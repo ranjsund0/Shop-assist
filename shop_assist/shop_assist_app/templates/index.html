@@ -1,0 +1,38 @@
+<!-- block content adds header and bootstrap/styling to page -->
+<!-- beginning body and html tags are included in block content, so only need to include the end tags for remainder of pages -->
+{% block content %}
+{% include "header.html" %}
+{% endblock %}
+{% csrf_token %}
+        {% if messages %}
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        {% endif %}
+    <!-- for loop to print product id, will need to pass the products object through context so that for loop can iterate through each on and display on page -->
+    
+    <div id="main">
+        
+        <div class="grid-container">
+            {% for i, j, k in bookslist %}
+            <div class="card" style="width: 200px;">
+            <img class="card-img-top" style="height: 250px;" src="https://books.toscrape.com/{{k}}" alt="{{i}}">
+                <div class="card-body">
+                    <p class="card-text">{{i}} | {{j}}<p>
+                </div>
+            </div>
+            {% endfor %}             
+        </div> 
+    </div>
+</body>
+</html>
+
+        <!-- <div class="grid-container">
+            {% for i, j, k in bookslist %}
+            <div class="product"> 
+            <h3>{{i}}</h3>
+            <img src="https://books.toscrape.com/{{k}}" alt="{{i}}">
+            <p>Price: {{j}}</p>
+            </div>
+            {% endfor %}             
+        </div>  -->
